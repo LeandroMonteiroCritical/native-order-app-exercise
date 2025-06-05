@@ -8,19 +8,27 @@ A React Native application built with Expo, showcasing a simple order management
 
   - Phone number-based login (mocked)
   - Session persistence with AsyncStorage
-  - Protected routes
+  - Protected routes with automatic navigation
 
 - **Dashboard**
 
   - Client information display
   - Client classification badge (Gold/Silver/Bronze)
   - Order list with status indicators
+  - Real-time order status updates
 
 - **Order Management**
-  - Detailed order view
-  - Product list with quantities
-  - Order status tracking
-  - Total amount calculation
+
+  - Detailed order view with product breakdown
+  - Product list with quantities and pricing
+  - Order status tracking with visual indicators
+  - Total amount calculation and tax breakdown
+
+- **Design System**
+  - Centralized color scheme with semantic naming
+  - Consistent typography and spacing
+  - Reusable UI components
+  - Responsive design principles
 
 ## 🛠️ Tech Stack
 
@@ -28,6 +36,15 @@ A React Native application built with Expo, showcasing a simple order management
 - [Expo Router](https://docs.expo.dev/router/introduction/) - File-based navigation
 - [NativeWind](https://www.nativewind.dev/) - Tailwind CSS for React Native
 - [AsyncStorage](https://react-native-async-storage.github.io/async-storage/) - Local data persistence
+- [TypeScript](https://www.typescriptlang.org/) - Type safety and better development experience
+
+## ✨ Key Features
+
+- **Type-Safe Development** - Full TypeScript support for better code quality
+- **Responsive Design** - NativeWind for consistent styling across devices
+- **Centralized Theming** - Comprehensive color system with semantic naming
+- **File-based Routing** - Expo Router for intuitive navigation structure
+- **State Management** - React Context for authentication and app state
 
 ## 📁 Project Structure
 
@@ -37,8 +54,12 @@ src/
   │   ├── (auth)/         # Authentication routes
   │   └── (app)/          # Protected app routes
   ├── components/         # Shared UI components
+  ├── constants/          # App constants and configuration
+  │   └── colors.ts       # Centralized color scheme
   ├── contexts/          # React Context providers
-  └── data/             # Mock data and types
+  ├── data/             # Mock data and types
+  └── hooks/            # Custom React hooks
+      └── useTheme.ts   # Theme and color utilities
 ```
 
 ## 🚦 Getting Started
@@ -93,6 +114,50 @@ The app uses a set of reusable components built with NativeWind:
 - `Badge` - Status and classification indicators
 - `Input` - Form input fields
 - `SafeContainer` - Safe area wrapper for screens
+
+## 🎨 Design System
+
+### Centralized Color Scheme
+
+The app implements a comprehensive color system for consistent theming:
+
+**Color Categories:**
+
+- **Primary Colors** - Main brand colors (50-900 shades)
+- **Secondary Colors** - Supporting colors (50-900 shades)
+- **Semantic Colors** - Success, Error, Warning (50-900 shades each)
+- **Background Colors** - Primary, Secondary, Tertiary backgrounds
+- **Text Colors** - Primary, Secondary, Tertiary, Inverse text
+- **Border Colors** - Light, Medium, Dark borders
+
+**Usage Options:**
+
+1. **NativeWind Classes (Recommended)**
+
+   ```tsx
+   <View className="bg-primary-500 border-border-light">
+     <Text className="text-text-primary">Primary text</Text>
+     <Text className="text-text-secondary">Secondary text</Text>
+   </View>
+   ```
+
+2. **useTheme Hook**
+
+   ```tsx
+   const theme = useTheme();
+   <View style={{ backgroundColor: theme.semantic.primary }}>
+   ```
+
+3. **Direct Import**
+   ```tsx
+   import { colors } from "../constants/colors";
+   ```
+
+**Files:**
+
+- `src/constants/colors.ts` - Color definitions
+- `src/hooks/useTheme.ts` - Theme hook for JavaScript usage
+- `tailwind.config.js` - NativeWind color configuration
 
 ## 💾 Data Persistence
 

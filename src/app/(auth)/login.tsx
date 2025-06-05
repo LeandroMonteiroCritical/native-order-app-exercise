@@ -16,16 +16,15 @@ export default function LoginScreen() {
       setError(err instanceof Error ? err.message : "An error occurred");
     }
   }
-
   return (
     <SafeContainer>
-      <View className="flex-1 justify-center items-center p-4 bg-white">
+      <View className="flex-1 justify-center items-center p-4 bg-background-primary">
         <View className="w-full max-w-sm space-y-6">
-          <View className="space-y-2 text-center">
-            <Text className="text-3xl font-bold tracking-tighter">
+          <View className="space-y-5 text-center">
+            <Text className="text-3xl font-bold tracking-tighter text-text-primary">
               Welcome back
             </Text>
-            <Text className="text-gray-500">
+            <Text className="text-text-secondary">
               Enter your phone number to continue
             </Text>
           </View>
@@ -40,14 +39,14 @@ export default function LoginScreen() {
               autoCapitalize="none"
               error={error}
             />
-
             <Button
               onPress={handleLogin}
               loading={isLoading}
               disabled={!phone.trim()}
               fullWidth
+              className="mt-4 bg-primary-500"
             >
-              Continue
+              <Text>Continue</Text>
             </Button>
           </View>
         </View>
