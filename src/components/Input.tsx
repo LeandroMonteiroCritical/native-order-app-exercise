@@ -13,7 +13,7 @@ export function Input({ label, error, ...props }: InputProps) {
       )}
       <TextInput
         className={`
-          h-10 px-3 rounded-lg border
+          h-12 px-3 py-3 rounded-lg border text-center
           ${error ? "border-red-500" : "border-gray-200"}
           ${props.editable === false ? "bg-gray-50" : "bg-white"}
         `}

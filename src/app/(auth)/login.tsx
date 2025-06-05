@@ -24,7 +24,7 @@ export default function LoginScreen() {
             <Text className="text-3xl font-bold tracking-tighter text-text-primary">
               Welcome back
             </Text>
-            <Text className="text-text-secondary">
+            <Text className="text-text-secondary mt-4">
               Enter your phone number to continue
             </Text>
           </View>

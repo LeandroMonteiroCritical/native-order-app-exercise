@@ -119,7 +119,7 @@ The app uses a set of reusable components built with NativeWind:
 
 ### Centralized Color Scheme
 
-The app implements a comprehensive color system for consistent theming:
+The app implements a comprehensive color system with a **single source of truth** approach:
 
 **Color Categories:**
 
@@ -129,6 +129,12 @@ The app implements a comprehensive color system for consistent theming:
 - **Background Colors** - Primary, Secondary, Tertiary backgrounds
 - **Text Colors** - Primary, Secondary, Tertiary, Inverse text
 - **Border Colors** - Light, Medium, Dark borders
+
+**Single Source Architecture:**
+
+- All colors are defined once in `src/constants/colors.ts`
+- `tailwind.config.js` imports colors from the constants file
+- No duplication - update colors in one place, they update everywhere
 
 **Usage Options:**
 
@@ -155,9 +161,9 @@ The app implements a comprehensive color system for consistent theming:
 
 **Files:**
 
-- `src/constants/colors.ts` - Color definitions
+- `src/constants/colors.ts` - Single source of truth for all colors
 - `src/hooks/useTheme.ts` - Theme hook for JavaScript usage
-- `tailwind.config.js` - NativeWind color configuration
+- `tailwind.config.js` - Imports colors from constants (no duplication)
 
 ## 💾 Data Persistence
 
