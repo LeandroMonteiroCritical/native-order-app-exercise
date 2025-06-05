@@ -12,10 +12,11 @@ A React Native application built with Expo, showcasing a simple order management
 
 - **Dashboard**
 
-  - Client information display
+  - Client information display with animated header
   - Client classification badge (Gold/Silver/Bronze)
-  - Order list with status indicators
+  - Order list with status indicators and smooth animations
   - Real-time order status updates
+  - Staggered card animations for enhanced user experience
 
 - **Order Management**
 
@@ -23,18 +24,21 @@ A React Native application built with Expo, showcasing a simple order management
   - Product list with quantities and pricing
   - Order status tracking with visual indicators
   - Total amount calculation and tax breakdown
+  - Smooth fade-in animations for content
 
 - **Design System**
   - Centralized color scheme with semantic naming
   - Consistent typography and spacing
-  - Reusable UI components
+  - Reusable UI components with smooth animations
   - Responsive design principles
+  - Dark theme with consistent background handling
 
 ## 🛠️ Tech Stack
 
 - [Expo](https://expo.dev/) - React Native development platform
 - [Expo Router](https://docs.expo.dev/router/introduction/) - File-based navigation
 - [NativeWind](https://www.nativewind.dev/) - Tailwind CSS for React Native
+- [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/) - Smooth animations and gestures
 - [AsyncStorage](https://react-native-async-storage.github.io/async-storage/) - Local data persistence
 - [TypeScript](https://www.typescriptlang.org/) - Type safety and better development experience
 
@@ -42,9 +46,11 @@ A React Native application built with Expo, showcasing a simple order management
 
 - **Type-Safe Development** - Full TypeScript support for better code quality
 - **Responsive Design** - NativeWind for consistent styling across devices
+- **Smooth Animations** - React Native Reanimated for enhanced user experience
 - **Centralized Theming** - Comprehensive color system with semantic naming
 - **File-based Routing** - Expo Router for intuitive navigation structure
 - **State Management** - React Context for authentication and app state
+- **Consistent UI** - Dark theme with proper background handling and no visual glitches
 
 ## 📁 Project Structure
 
@@ -97,23 +103,25 @@ src/
 
 2. **Dashboard**
 
-   - View client information
-   - Browse order list
-   - Click on orders for details
+   - View client information with animated header
+   - Browse order list with smooth card animations
+   - Click on orders for details with consistent navigation
 
 3. **Order Details**
-   - View product list
-   - Check order status
-   - See total amount
+   - View product list with fade-in animations
+   - Check order status with visual indicators
+   - See total amount calculation
+   - Navigate back with consistent right-to-left animation
 
 ## 🎨 UI Components
 
-The app uses a set of reusable components built with NativeWind:
+The app uses a set of reusable components built with NativeWind and React Native Reanimated:
 
 - `Button` - Custom button with various styles and states
 - `Badge` - Status and classification indicators
 - `Input` - Form input fields
 - `SafeContainer` - Safe area wrapper for screens
+- `AnimatedHeader` - Dynamic header with smooth animations and context-aware content
 
 ## 🎨 Design System
 

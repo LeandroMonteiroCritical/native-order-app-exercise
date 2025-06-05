@@ -10,13 +10,13 @@ type BadgeVariant =
   | "info";
 
 const variantStyles: Record<BadgeVariant, { bg: string; text: string }> = {
-  gold: { bg: "bg-yellow-100", text: "text-yellow-800" },
-  silver: { bg: "bg-gray-100", text: "text-gray-800" },
-  bronze: { bg: "bg-orange-100", text: "text-orange-800" },
-  success: { bg: "bg-green-100", text: "text-green-800" },
-  warning: { bg: "bg-yellow-100", text: "text-yellow-800" },
-  error: { bg: "bg-red-100", text: "text-red-800" },
-  info: { bg: "bg-blue-100", text: "text-blue-800" },
+  gold: { bg: "bg-warning-100", text: "text-warning-800" },
+  silver: { bg: "bg-secondary-100", text: "text-secondary-800" },
+  bronze: { bg: "bg-warning-200", text: "text-warning-900" },
+  success: { bg: "bg-success-100", text: "text-success-800" },
+  warning: { bg: "bg-warning-100", text: "text-warning-800" },
+  error: { bg: "bg-error-100", text: "text-error-800" },
+  info: { bg: "bg-primary-100", text: "text-primary-800" },
 };
 
 interface BadgeProps {

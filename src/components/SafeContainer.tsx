@@ -11,10 +11,9 @@ export function SafeContainer({
   className = "",
 }: SafeContainerProps) {
   const { top, bottom } = useSafeAreaInsets();
-
   return (
     <View
-      className={`flex-1 ${className}`}
+      className={`flex-1 bg-background-primary ${className}`}
       style={{
         paddingTop: top,
         paddingBottom: bottom,

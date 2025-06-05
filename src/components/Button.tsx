@@ -1,23 +1,29 @@
 import { TouchableOpacity, Text, ActivityIndicator, View } from "react-native";
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withSpring,
+  withTiming,
+} from "react-native-reanimated";
 
 type ButtonVariant = "primary" | "secondary" | "outline" | "ghost";
 
 const variantStyles: Record<ButtonVariant, { button: string; text: string }> = {
   primary: {
-    button: "bg-gray-900 active:bg-gray-800",
+    button: "bg-primary-500 active:bg-primary-600",
     text: "text-white",
   },
   secondary: {
-    button: "bg-gray-100 active:bg-gray-200",
-    text: "text-gray-900",
+    button: "bg-background-secondary active:bg-background-tertiary",
+    text: "text-text-primary",
   },
   outline: {
-    button: "border border-gray-200 active:bg-gray-100",
-    text: "text-gray-900",
+    button: "border border-border-light active:bg-background-secondary",
+    text: "text-text-primary",
   },
   ghost: {
-    button: "active:bg-gray-100",
-    text: "text-gray-900",
+    button: "active:bg-background-secondary",
+    text: "text-text-primary",
   },
 };
 
@@ -43,10 +49,41 @@ export function Button({
   const styles = variantStyles[variant];
   const isDisabled = disabled || loading;
 
+  // Animation values
+  const scale = useSharedValue(1);
+  const opacity = useSharedValue(1);
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ scale: scale.value }],
+      opacity: opacity.value,
+    };
+  });
+
+  const handlePressIn = () => {
+    if (!isDisabled) {
+      scale.value = withSpring(0.95, { damping: 15, stiffness: 150 });
+      opacity.value = withTiming(0.8, { duration: 100 });
+    }
+  };
+
+  const handlePressOut = () => {
+    if (!isDisabled) {
+      scale.value = withSpring(1, { damping: 15, stiffness: 150 });
+      opacity.value = withTiming(1, { duration: 100 });
+    }
+  };
+
+  const AnimatedTouchableOpacity =
+    Animated.createAnimatedComponent(TouchableOpacity);
+
   return (
-    <TouchableOpacity
+    <AnimatedTouchableOpacity
       onPress={onPress}
+      onPressIn={handlePressIn}
+      onPressOut={handlePressOut}
       disabled={isDisabled}
+      style={animatedStyle}
       className={`
         h-10 px-4 rounded-lg justify-center items-center
         ${styles.button}
@@ -56,10 +93,12 @@ export function Button({
       `}
     >
       {loading ? (
-        <ActivityIndicator color={variant === "primary" ? "white" : "black"} />
+        <ActivityIndicator
+          color={variant === "primary" ? "white" : "#ffffff"}
+        />
       ) : (
         <Text className={`text-sm font-medium ${styles.text}`}>{children}</Text>
       )}
-    </TouchableOpacity>
+    </AnimatedTouchableOpacity>
   );
 }
