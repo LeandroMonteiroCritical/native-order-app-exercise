@@ -2,7 +2,14 @@ import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import { Link, useRouter } from "expo-router";
 import { mockClient, mockOrders } from "../../data/mock";
 import { useAuth } from "../../contexts/auth";
-import { Badge, Button, SafeContainer, AnimatedHeader } from "../../components";
+import {
+  Badge,
+  Button,
+  SafeContainer,
+  AnimatedHeader,
+  SpeechButton,
+} from "../../components";
+import { speechTexts } from "../../constants/speechTexts";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -57,7 +64,7 @@ function OrderCard({ order, index }) {
         className="bg-background-secondary p-4 rounded-lg shadow-sm mb-3 border border-border-light"
       >
         <View className="flex-row justify-between items-center">
-          <View>
+          <View className="flex-1">
             <Text className="text-sm font-medium text-text-primary">
               Order #{order.id}
             </Text>
@@ -65,10 +72,16 @@ function OrderCard({ order, index }) {
               {order.date}
             </Text>
           </View>
-          <Badge
-            variant={getStatusVariant(order.status)}
-            label={order.status}
-          />
+          <View className="flex-row items-center gap-2">
+            <SpeechButton
+              text={speechTexts.orderSummary(order)}
+              variant="icon"
+            />
+            <Badge
+              variant={getStatusVariant(order.status)}
+              label={order.status}
+            />
+          </View>
         </View>
       </AnimatedTouchableOpacity>
     </Animated.View>
@@ -87,6 +100,10 @@ export default function DashboardScreen() {
           variant: mockClient.classification.toLowerCase(),
           label: mockClient.classification,
         }}
+        speechText={speechTexts.welcome(
+          mockClient.name,
+          mockClient.classification
+        )}
         onLogout={logout}
       />
       <ScrollView className="flex-1 p-4">

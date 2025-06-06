@@ -1,6 +1,7 @@
 import "../global.css";
 import { Slot, useRouter, useSegments } from "expo-router";
 import { AuthProvider, useAuth } from "../contexts/auth";
+import { SpeechProvider } from "../contexts/speech";
 import { useEffect } from "react";
 import { View, ActivityIndicator } from "react-native";
 import { StatusBar } from "expo-status-bar";
@@ -47,8 +48,10 @@ export default function Layout() {
       style={{ backgroundColor: "#0f172a" }}
     >
       <AuthProvider>
-        <StatusBar style="light" />
-        <RouteGuard />
+        <SpeechProvider>
+          <StatusBar style="light" />
+          <RouteGuard />
+        </SpeechProvider>
       </AuthProvider>
     </View>
   );

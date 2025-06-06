@@ -6,7 +6,9 @@ import {
   Button,
   SafeContainer,
   AnimatedHeader,
+  SpeechButton,
 } from "../../../components";
+import { speechTexts } from "../../../constants/speechTexts";
 import Animated, { FadeIn } from "react-native-reanimated";
 
 export default function OrderDetailsScreen() {
@@ -59,9 +61,15 @@ export default function OrderDetailsScreen() {
         onBackPress={() => router.push("/dashboard")}
       />
       <ScrollView className="flex-1 p-4">
-        <Text className="text-lg font-semibold mb-4 text-text-primary">
-          Products
-        </Text>
+        <View className="flex-row justify-between items-center mb-4">
+          <Text className="text-lg font-semibold text-text-primary">
+            Products
+          </Text>
+          <SpeechButton
+            text={speechTexts.orderDetails(order, total)}
+            variant="secondary"
+          />
+        </View>
         <Animated.View
           entering={FadeIn.duration(600)}
           className="bg-background-secondary rounded-lg p-4 shadow-sm border border-border-light"
@@ -69,7 +77,7 @@ export default function OrderDetailsScreen() {
           {order.products.map((product, index) => (
             <View
               key={index}
-              className={`flex-row justify-between py-3 ${
+              className={`flex-row justify-between items-center py-3 ${
                 index !== order.products.length - 1
                   ? "border-b border-border-light"
                   : ""
@@ -83,12 +91,21 @@ export default function OrderDetailsScreen() {
                   Quantity: {product.quantity}
                 </Text>
               </View>
-              <Text className="text-text-primary">
-                ${(product.price * product.quantity).toFixed(2)}
-              </Text>
+              <View className="flex-row items-center gap-2">
+                <SpeechButton
+                  text={speechTexts.productDetails(
+                    product.name,
+                    product.quantity,
+                    product.price * product.quantity
+                  )}
+                  variant="icon"
+                />
+                <Text className="text-text-primary">
+                  ${(product.price * product.quantity).toFixed(2)}
+                </Text>
+              </View>
             </View>
           ))}
-
           <View className="mt-4 pt-4 border-t border-border-light">
             <View className="flex-row justify-between">
               <Text className="font-semibold text-text-primary">Total</Text>

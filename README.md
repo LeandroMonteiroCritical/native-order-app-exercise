@@ -26,6 +26,18 @@ A React Native application built with Expo, showcasing a simple order management
   - Total amount calculation and tax breakdown
   - Smooth fade-in animations for content
 
+- **Text-to-Speech Accessibility**
+
+  - 🔊 Comprehensive voice narration throughout the app
+  - Welcome messages with client name and classification
+  - Order summaries with status and product counts
+  - Detailed product information spoken aloud
+  - Multi-language support (English, Spanish, etc.)
+  - Haptic feedback for enhanced accessibility
+  - Three speech button variants (primary, secondary, icon)
+  - Global speech context with state management
+  - Centralized speech content management
+
 - **Design System**
   - Centralized color scheme with semantic naming
   - Consistent typography and spacing
@@ -39,6 +51,8 @@ A React Native application built with Expo, showcasing a simple order management
 - [Expo Router](https://docs.expo.dev/router/introduction/) - File-based navigation
 - [NativeWind](https://www.nativewind.dev/) - Tailwind CSS for React Native
 - [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/) - Smooth animations and gestures
+- [Expo Speech](https://docs.expo.dev/versions/latest/sdk/speech/) - Text-to-speech functionality
+- [Expo Haptics](https://docs.expo.dev/versions/latest/sdk/haptics/) - Tactile feedback for accessibility
 - [AsyncStorage](https://react-native-async-storage.github.io/async-storage/) - Local data persistence
 - [TypeScript](https://www.typescriptlang.org/) - Type safety and better development experience
 
@@ -50,6 +64,8 @@ A React Native application built with Expo, showcasing a simple order management
 - **Centralized Theming** - Comprehensive color system with semantic naming
 - **File-based Routing** - Expo Router for intuitive navigation structure
 - **State Management** - React Context for authentication and app state
+- **Accessibility Features** - Comprehensive text-to-speech with haptic feedback
+- **Multi-language Support** - TTS in multiple languages with centralized content
 - **Consistent UI** - Dark theme with proper background handling and no visual glitches
 
 ## 📁 Project Structure
@@ -112,6 +128,15 @@ src/
    - Check order status with visual indicators
    - See total amount calculation
    - Navigate back with consistent right-to-left animation
+   - 🔊 Use speech buttons to hear order and product details
+
+4. **Text-to-Speech Features**
+   - 🔊 Tap any speech button to hear content read aloud
+   - Welcome messages announce client name and classification
+   - Order cards can be spoken with status and basic info
+   - Detailed product information with pricing
+   - Multi-language support (try Spanish: "Bienvenido...")
+   - Haptic feedback confirms speech button activation
 
 ## 🎨 UI Components
 
@@ -122,6 +147,8 @@ The app uses a set of reusable components built with NativeWind and React Native
 - `Input` - Form input fields
 - `SafeContainer` - Safe area wrapper for screens
 - `AnimatedHeader` - Dynamic header with smooth animations and context-aware content
+- `SpeechButton` - Text-to-speech button with three variants and haptic feedback
+- `TextToSpeechDemo` - Comprehensive demo component showcasing TTS features
 
 ## 🎨 Design System
 
@@ -172,6 +199,69 @@ The app implements a comprehensive color system with a **single source of truth*
 - `src/constants/colors.ts` - Single source of truth for all colors
 - `src/hooks/useTheme.ts` - Theme hook for JavaScript usage
 - `tailwind.config.js` - Imports colors from constants (no duplication)
+
+## 🗣️ Text-to-Speech Architecture
+
+### Comprehensive Accessibility System
+
+The app implements a full-featured text-to-speech system designed for accessibility:
+
+**Core Components:**
+
+- **`useSpeech` Hook** - Core TTS functionality with state management
+- **`SpeechButton` Component** - Reusable speech button with three variants
+- **`SpeechProvider` Context** - Global speech state management
+- **`speechTexts` Constants** - Centralized speech content management
+
+**Speech Button Variants:**
+
+1. **Icon Variant** (`variant="icon"`) - Compact 🔊/⏸ button for inline use
+2. **Primary Variant** (`variant="primary"`) - Full button with "Listen/Stop" text
+3. **Secondary Variant** (`variant="secondary"`) - Outlined button style
+
+**Features:**
+
+- **Multi-language Support** - Configurable language per speech instance
+- **Haptic Feedback** - Tactile confirmation for accessibility
+- **Animation Integration** - Smooth scaling animations with Reanimated
+- **State Management** - Global speech state prevents conflicts
+- **Error Handling** - Graceful fallbacks for speech failures
+- **Accessibility Labels** - Screen reader compatible
+
+**Usage Example:**
+
+```tsx
+import { SpeechButton } from "../components";
+import { speechTexts } from "../constants/speechTexts";
+
+// Basic usage
+<SpeechButton 
+  text="Hello world" 
+  variant="icon" 
+/>
+
+// Advanced usage with custom language
+<SpeechButton 
+  text="Bienvenido a nuestra aplicación"
+  language="es-ES"
+  variant="primary"
+/>
+
+// Using centralized speech texts
+<SpeechButton 
+  text={speechTexts.welcome(clientName, classification)}
+  variant="secondary"
+/>
+```
+
+**Files:**
+
+- `src/hooks/useSpeech.ts` - Core TTS hook with state management
+- `src/components/SpeechButton.tsx` - Reusable speech button component
+- `src/contexts/speech.tsx` - Global speech context provider
+- `src/constants/speechTexts.ts` - Centralized speech content
+- `src/hooks/useAccessibilityAnnouncements.ts` - Accessibility helper functions
+- `src/components/TextToSpeechDemo.tsx` - Demo showcasing all TTS features
 
 ## 💾 Data Persistence
 

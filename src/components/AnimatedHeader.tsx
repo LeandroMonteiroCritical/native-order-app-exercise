@@ -7,6 +7,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { Badge } from "./Badge";
 import { Button } from "./Button";
+import { SpeechButton } from "./SpeechButton";
 import { useEffect } from "react";
 
 interface AnimatedHeaderProps {
@@ -20,6 +21,7 @@ interface AnimatedHeaderProps {
   onBackPress?: () => void;
   onLogout?: () => void;
   showBackButton?: boolean;
+  speechText?: string;
 }
 
 export function AnimatedHeader({
@@ -30,6 +32,7 @@ export function AnimatedHeader({
   onBackPress,
   onLogout,
   showBackButton = false,
+  speechText,
 }: AnimatedHeaderProps) {
   const headerHeight = useSharedValue(20); // Start much smaller for more visible animation
   const opacity = useSharedValue(0); // Start invisible
@@ -101,17 +104,15 @@ export function AnimatedHeader({
       <View className="px-4 pb-4">
         {/* Back Button - Only visible in order details mode */}
         {showBackButton && (
-          <Animated.View style={backButtonStyle} className="mb-3">
-            <Button
+          <Animated.View style={backButtonStyle} className="mb-3">            <Button
               variant="ghost"
               onPress={onBackPress}
               className="self-start -ml-2"
             >
-              ← Back to Orders
+              <Text>← Back to Orders</Text>
             </Button>
           </Animated.View>
         )}
-
         {/* Main Header Content */}
         <Animated.View
           style={mainContentStyle}
@@ -122,6 +123,9 @@ export function AnimatedHeader({
             {badge && (
               <Badge variant={badge.variant as any} label={badge.label} />
             )}
+            {speechText && (
+              <SpeechButton text={speechText} variant="icon" className="ml-1" />
+            )}
           </View>
 
           {mode === "dashboard" && onLogout && (
@@ -130,7 +134,6 @@ export function AnimatedHeader({
             </Button>
           )}
         </Animated.View>
-
         {/* Subtitle - Only for order details */}
         {subtitle && mode === "order-details" && (
           <Animated.View style={mainContentStyle}>
