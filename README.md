@@ -124,6 +124,7 @@ src/
    - Click on orders for details with consistent navigation
 
 3. **Order Details**
+
    - View product list with fade-in animations
    - Check order status with visual indicators
    - See total amount calculation
@@ -235,20 +236,20 @@ import { SpeechButton } from "../components";
 import { speechTexts } from "../constants/speechTexts";
 
 // Basic usage
-<SpeechButton 
-  text="Hello world" 
-  variant="icon" 
+<SpeechButton
+  text="Hello world"
+  variant="icon"
 />
 
 // Advanced usage with custom language
-<SpeechButton 
+<SpeechButton
   text="Bienvenido a nuestra aplicación"
   language="es-ES"
   variant="primary"
 />
 
 // Using centralized speech texts
-<SpeechButton 
+<SpeechButton
   text={speechTexts.welcome(clientName, classification)}
   variant="secondary"
 />
@@ -262,6 +263,47 @@ import { speechTexts } from "../constants/speechTexts";
 - `src/constants/speechTexts.ts` - Centralized speech content
 - `src/hooks/useAccessibilityAnnouncements.ts` - Accessibility helper functions
 - `src/components/TextToSpeechDemo.tsx` - Demo showcasing all TTS features
+
+## 🛡️ Code Quality & ESLint Configuration
+
+### Automated Text Rendering Issue Detection
+
+The app includes a comprehensive ESLint configuration designed to catch React Native text rendering issues that can cause runtime errors.
+
+**Custom ESLint Rules:**
+
+- **`local-rules/no-jsx-whitespace`** - Detects and auto-fixes `{" "}` patterns in JSX
+- **`react-native/no-raw-text`** - Ensures all text is wrapped in `<Text>` components
+- **`react/jsx-no-literals`** - Warns about string literals in JSX
+- **`no-irregular-whitespace`** - Catches irregular whitespace patterns
+
+**Key Features:**
+
+- **Auto-Fix Capability** - Automatically removes problematic `{" "}` expressions
+- **Comprehensive Detection** - Catches nested `<Text>` components and raw text issues
+- **Development Safety** - Prevents the "Text strings must be rendered within a `<Text>` component" error
+- **Custom Rule Engine** - Local ESLint rules specifically designed for React Native
+
+**Usage:**
+
+```bash
+# Check all files for text rendering issues
+npm run lint
+
+# Auto-fix text rendering problems
+npm run lint:fix
+
+# Check specific file
+npx eslint src/components/YourFile.tsx --fix
+```
+
+**Configuration Files:**
+
+- `.eslintrc.js` - Main ESLint configuration with React Native rules
+- `eslint-local-rules.js` - Custom rule loader
+- `eslint-rules/no-jsx-whitespace.js` - Custom rule for JSX whitespace detection
+
+This setup ensures that the `{" "}` pattern and other text rendering issues that caused runtime errors are caught during development, preventing them from reaching production.
 
 ## 💾 Data Persistence
 

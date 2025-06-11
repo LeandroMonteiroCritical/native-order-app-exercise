@@ -104,12 +104,13 @@ export function AnimatedHeader({
       <View className="px-4 pb-4">
         {/* Back Button - Only visible in order details mode */}
         {showBackButton && (
-          <Animated.View style={backButtonStyle} className="mb-3">            <Button
+          <Animated.View style={backButtonStyle} className="mb-3">
+            <Button
               variant="ghost"
               onPress={onBackPress}
               className="self-start -ml-2"
             >
-              <Text>← Back to Orders</Text>
+              ← Back to Orders
             </Button>
           </Animated.View>
         )}
@@ -130,7 +131,7 @@ export function AnimatedHeader({
 
           {mode === "dashboard" && onLogout && (
             <Button variant="ghost" onPress={onLogout}>
-              <Text>Logout</Text>
+              Logout
             </Button>
           )}
         </Animated.View>

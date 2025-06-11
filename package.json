@@ -7,14 +7,18 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "deploy": "npx expo export -p web && npx eas-cli@latest deploy"
+    "deploy": "npx expo export -p web && npx eas-cli@latest deploy",
+    "lint": "eslint src/**/*.{ts,tsx}",
+    "lint:fix": "eslint src/**/*.{ts,tsx} --fix"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^2.1.2",
     "expo": "53.0.10",
     "expo-constants": "~17.1.4",
+    "expo-haptics": "~14.1.4",
     "expo-linking": "~7.1.4",
     "expo-router": "~5.0.3",
+    "expo-speech": "~13.1.7",
     "expo-splash-screen": "~0.30.9",
     "expo-status-bar": "~2.2.3",
     "nativewind": "^4.0.1",
@@ -26,13 +30,21 @@
     "react-native-screens": "~4.11.1",
     "react-native-toast-message": "^2.3.0",
     "react-native-web": "^0.20.0",
-    "tailwindcss": "^3.4.0",
-    "expo-speech": "~13.1.7",
-    "expo-haptics": "~14.1.4"
+    "tailwindcss": "^3.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.28.0",
+    "@react-native-community/eslint-config": "^3.2.0",
     "@types/react": "~19.0.10",
+    "@typescript-eslint/eslint-plugin": "^8.34.0",
+    "@typescript-eslint/parser": "^8.34.0",
+    "eslint": "^9.28.0",
+    "eslint-plugin-local-rules": "^3.0.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-native": "^5.0.0",
     "typescript": "~5.8.3"
   },
   "private": true

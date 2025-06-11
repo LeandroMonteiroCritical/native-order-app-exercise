@@ -23,7 +23,7 @@ export default function OrderDetailsScreen() {
             Order not found
           </Text>
           <Button variant="outline" onPress={() => router.back()}>
-            <Text>Go Back</Text>
+            Go Back
           </Button>
         </View>
       </SafeContainer>

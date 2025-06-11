@@ -62,7 +62,7 @@ export default function LoginScreen() {
                 fullWidth
                 className="mt-4 bg-primary-500"
               >
-                <Text>Continue</Text>
+                Continue
               </Button>
             </Animated.View>
           </Animated.View>
