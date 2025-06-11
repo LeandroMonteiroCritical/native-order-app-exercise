@@ -105,7 +105,8 @@ export function AnimatedHeader({
     <Animated.View
       style={[animatedHeaderStyle, { zIndex: 1000 }]}
       className={`bg-background-secondary border-b border-border-light justify-end ${
-        mode === "order-details" ? "mb-4" : ""      }`}
+        mode === "order-details" ? "mb-4" : ""
+      }`}
     >
       <View className="px-4 pb-4 pt-2">
         {/* Back Button - Only visible in order details mode */}

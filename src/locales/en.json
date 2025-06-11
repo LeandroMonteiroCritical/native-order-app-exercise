@@ -43,5 +43,19 @@
     "english": "English",
     "french": "Français",
     "portuguese": "Português"
+  },
+  "speech": {
+    "youAre": "You are a",
+    "orderNumber": "Order number {{id}}",
+    "placedOn": "placed on {{date}}",
+    "statusIs": "status is {{status}}",
+    "orderDetails": "Order details for order number {{id}}",
+    "containsProducts": "This order contains {{count}} product",
+    "containsProducts_plural": "This order contains {{count}} products",
+    "totalAmount": "with a total amount of {{amount}} dollars",
+    "productDetails": "{{name}}, quantity {{quantity}}, price {{price}} dollars",
+    "orderDelivered": "This order has been delivered successfully",
+    "orderPending": "This order is pending and will be processed soon",
+    "orderCancelled": "This order has been cancelled"
   }
 }

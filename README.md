@@ -244,12 +244,20 @@ The app implements a full-featured text-to-speech system designed for accessibil
 
 **Features:**
 
-- **Multi-language Support** - Configurable language per speech instance
+- **Multi-language Support** - Automatic language detection from app settings
+- **Language-Specific Optimization** - Custom speech parameters per language
+- **Translatable Content** - All speech text uses i18n translation system
 - **Haptic Feedback** - Tactile confirmation for accessibility
 - **Animation Integration** - Smooth scaling animations with Reanimated
 - **State Management** - Global speech state prevents conflicts
 - **Error Handling** - Graceful fallbacks for speech failures
 - **Accessibility Labels** - Screen reader compatible
+
+**Supported Languages:**
+
+- 🇺🇸 English (`en-US`) - Standard parameters
+- 🇫🇷 French (`fr-FR`) - Optimized pitch and rate
+- 🇵🇹 Portuguese (`pt-BR`) - Brazilian Portuguese variant
 
 **Usage Example:**
 

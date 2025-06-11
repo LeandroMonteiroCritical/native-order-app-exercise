@@ -1,3 +1,4 @@
+import React from "react";
 import { TouchableOpacity, Text } from "react-native";
 import Animated, {
   useSharedValue,
@@ -7,6 +8,8 @@ import Animated, {
 } from "react-native-reanimated";
 import * as Haptics from "expo-haptics";
 import { useSpeech } from "../hooks/useSpeech";
+import { getCurrentLanguage } from "../locales/i18n";
+import { getTTSOptions } from "../constants/ttsLanguages";
 
 interface SpeechButtonProps {
   text: string;
@@ -18,7 +21,7 @@ interface SpeechButtonProps {
 
 export function SpeechButton({
   text,
-  language = "en-US",
+  language, // Optional override, otherwise uses current app language
   children,
   className = "",
   variant = "icon",
@@ -40,8 +43,12 @@ export function SpeechButton({
     if (isSpeaking) {
       await stop();
     } else {
-      // Start speaking
-      await speak(text, { language });
+      // Get current language and TTS options
+      const currentLang = language || getCurrentLanguage();
+      const ttsOptions = getTTSOptions(currentLang);
+
+      // Start speaking with language-specific options
+      await speak(text, ttsOptions);
 
       // Animation for speaking state
       scale.value = withSequence(

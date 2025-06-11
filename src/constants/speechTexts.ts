@@ -1,33 +1,52 @@
-import { Order, Client } from "../data/mock";
+import { Order } from "../data/mock";
+import i18n from "../locales/i18n";
 
 export const speechTexts = {
-  // Dashboard texts
-  welcome: (clientName: string, classification: string) =>
-    `Welcome back ${clientName}. You are a ${classification} member.`,
+  // Dashboard texts - now uses translations
+  welcome: (clientName: string, classification: string) => {
+    const welcomeText = i18n.t("dashboard.welcomeBack", { name: clientName });
+    const memberText = i18n.t("dashboard.member");
+    return `${welcomeText}. ${i18n.t("speech.youAre")} ${classification} ${memberText}.`;
+  },
 
-  // Order texts
-  orderSummary: (order: Order) =>
-    `Order number ${order.id}, placed on ${order.date}, status is ${order.status}`,
-
-  orderDetails: (order: Order, total: number) =>
-    `Order details for order number ${order.id}. This order contains ${
-      order.products.length
-    } products with a total amount of ${total.toFixed(2)} dollars.`,
+  // Order texts - now uses translations
+  orderSummary: (order: Order) => {
+    const orderText = i18n.t("speech.orderNumber", { id: order.id });
+    const placedText = i18n.t("speech.placedOn", { date: order.date });
+    const statusText = i18n.t("speech.statusIs", {
+      status: i18n.t(`orders.status.${order.status.toLowerCase()}`),
+    });
+    return `${orderText}, ${placedText}, ${statusText}`;
+  },
+  orderDetails: (order: Order, total: number) => {
+    const detailsText = i18n.t("speech.orderDetails", { id: order.id });
+    const productsText = i18n.t("speech.containsProducts", {
+      count: order.products.length,
+    });
+    const totalText = i18n.t("speech.totalAmount", {
+      amount: total.toFixed(2),
+    });
+    return `${detailsText}. ${productsText} ${totalText}.`;
+  },
 
   productDetails: (productName: string, quantity: number, price: number) =>
-    `${productName}, quantity ${quantity}, price ${price.toFixed(2)} dollars`,
+    i18n.t("speech.productDetails", {
+      name: productName,
+      quantity: quantity,
+      price: price.toFixed(2),
+    }),
 
-  // Status texts
+  // Status texts - now uses translations
   orderStatus: (status: string) => {
-    switch (status) {
-      case "Delivered":
-        return "This order has been delivered successfully";
-      case "Pending":
-        return "This order is pending and will be processed soon";
-      case "Cancelled":
-        return "This order has been cancelled";
+    switch (status.toLowerCase()) {
+      case "delivered":
+        return i18n.t("speech.orderDelivered");
+      case "pending":
+        return i18n.t("speech.orderPending");
+      case "cancelled":
+        return i18n.t("speech.orderCancelled");
       default:
-        return `Order status is ${status}`;
+        return i18n.t("speech.statusIs", { status: status });
     }
   },
 
