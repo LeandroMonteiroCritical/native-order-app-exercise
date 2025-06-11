@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, Text } from "react-native";
+import { useTranslation } from "react-i18next";
 import { useAuth } from "../../contexts/auth";
 import { Button, Input, SafeContainer } from "../../components";
 import Animated, {
@@ -10,6 +11,7 @@ import Animated, {
 } from "react-native-reanimated";
 
 export default function LoginScreen() {
+  const { t } = useTranslation();
   const [phone, setPhone] = useState("");
   const [error, setError] = useState("");
   const { login, isLoading } = useAuth();
@@ -34,10 +36,10 @@ export default function LoginScreen() {
             className="space-y-5 text-center"
           >
             <Text className="text-3xl font-bold tracking-tighter text-text-primary">
-              Welcome back
+              {t("auth.welcome")}
             </Text>
             <Text className="text-text-secondary mt-4">
-              Enter your phone number to continue
+              {t("auth.subtitle")}
             </Text>
           </Animated.View>
 
@@ -46,8 +48,8 @@ export default function LoginScreen() {
             className="space-y-4"
           >
             <Input
-              label="Phone number"
-              placeholder="+1234567890"
+              label={t("auth.phoneLabel")}
+              placeholder={t("auth.phonePlaceholder")}
               value={phone}
               onChangeText={setPhone}
               keyboardType="phone-pad"
@@ -62,7 +64,7 @@ export default function LoginScreen() {
                 fullWidth
                 className="mt-4 bg-primary-500"
               >
-                Continue
+                <Text>{t("common.continue")}</Text>
               </Button>
             </Animated.View>
           </Animated.View>

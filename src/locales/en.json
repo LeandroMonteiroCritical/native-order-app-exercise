@@ -1,0 +1,47 @@
+{
+  "common": {
+    "continue": "Continue",
+    "back": "Back",
+    "search": "Search...",
+    "total": "Total",
+    "quantity": "Quantity",
+    "loading": "Loading...",
+    "error": "Error"
+  },
+  "auth": {
+    "welcome": "Welcome Back",
+    "subtitle": "Please enter your phone number to continue",
+    "phoneLabel": "Phone number",
+    "phonePlaceholder": "+1234567890"
+  },
+  "dashboard": {
+    "welcomeBack": "Welcome back",
+    "member": "member",
+    "orders": "Orders",
+    "noOrders": "No orders found",
+    "orderCount": "{{count}} order",
+    "orderCount_plural": "{{count}} orders"
+  },
+  "orders": {
+    "orderDetails": "Order Details",
+    "products": "Products",
+    "orderNumber": "Order #{{id}}",
+    "placedOn": "Placed on {{date}}",
+    "orderNotFound": "Order not found",
+    "status": {
+      "pending": "Pending",
+      "delivered": "Delivered",
+      "cancelled": "Cancelled"
+    }
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "orders": "Orders",
+    "profile": "Profile"
+  },
+  "languages": {
+    "english": "English",
+    "french": "Français",
+    "portuguese": "Português"
+  }
+}

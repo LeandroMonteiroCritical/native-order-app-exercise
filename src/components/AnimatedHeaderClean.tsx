@@ -105,7 +105,8 @@ export function AnimatedHeader({
     <Animated.View
       style={[animatedHeaderStyle, { zIndex: 1000 }]}
       className={`bg-background-secondary border-b border-border-light justify-end ${
-        mode === "order-details" ? "mb-4" : ""      }`}
+        mode === "order-details" ? "mb-4" : ""
+      }`}
     >
       <View className="px-4 pb-4 pt-2">
         {/* Back Button - Only visible in order details mode */}
@@ -116,7 +117,7 @@ export function AnimatedHeader({
               onPress={onBackPress}
               className="self-start -ml-2"
             >
-              <Text className="text-text-primary text-lg">
+              <Text className="text-text-primary">
                 {backArrow} {t("common.back")}
               </Text>
             </Button>
@@ -148,7 +149,7 @@ export function AnimatedHeader({
 
               {/* Badge and Speech Button for order details (inline with title) */}
               {mode === "order-details" && (badge || speechText) && (
-                <View className="flex-row items-center gap-2 mt-2">
+                <View className="flex-row items-center gap-2 -mt-2">
                   {badge && (
                     <Badge variant={badge.variant as any} label={badge.label} />
                   )}

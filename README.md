@@ -38,6 +38,17 @@ A React Native application built with Expo, showcasing a simple order management
   - Global speech context with state management
   - Centralized speech content management
 
+- **Internationalization (i18n)**
+
+  - 🌍 Multi-language support with react-i18next
+  - Flag-based language selector with expandable dropdown
+  - Support for English (🇺🇸), French (🇫🇷), and Portuguese (🇵🇹)
+  - Smooth animations for language selector expansion/collapse
+  - Absolute positioned dropdown overlay that doesn't disrupt layout
+  - Visual checkmark indicator for selected language
+  - Persistent language selection across app sessions
+  - Comprehensive translation coverage for all UI elements
+
 - **Design System**
   - Centralized color scheme with semantic naming
   - Consistent typography and spacing
@@ -53,6 +64,7 @@ A React Native application built with Expo, showcasing a simple order management
 - [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/) - Smooth animations and gestures
 - [Expo Speech](https://docs.expo.dev/versions/latest/sdk/speech/) - Text-to-speech functionality
 - [Expo Haptics](https://docs.expo.dev/versions/latest/sdk/haptics/) - Tactile feedback for accessibility
+- [react-i18next](https://react.i18next.com/) - Internationalization framework
 - [AsyncStorage](https://react-native-async-storage.github.io/async-storage/) - Local data persistence
 - [TypeScript](https://www.typescriptlang.org/) - Type safety and better development experience
 
@@ -65,6 +77,7 @@ A React Native application built with Expo, showcasing a simple order management
 - **File-based Routing** - Expo Router for intuitive navigation structure
 - **State Management** - React Context for authentication and app state
 - **Accessibility Features** - Comprehensive text-to-speech with haptic feedback
+- **Internationalization** - Multi-language support with flag-based language selector
 - **Multi-language Support** - TTS in multiple languages with centralized content
 - **Consistent UI** - Dark theme with proper background handling and no visual glitches
 
@@ -77,11 +90,20 @@ src/
   │   └── (app)/          # Protected app routes
   ├── components/         # Shared UI components
   ├── constants/          # App constants and configuration
-  │   └── colors.ts       # Centralized color scheme
+  │   ├── colors.ts       # Centralized color scheme
+  │   └── speechTexts.ts  # Text-to-speech content management
   ├── contexts/          # React Context providers
+  │   ├── auth.tsx       # Authentication context
+  │   └── speech.tsx     # Text-to-speech context
   ├── data/             # Mock data and types
-  └── hooks/            # Custom React hooks
-      └── useTheme.ts   # Theme and color utilities
+  ├── hooks/            # Custom React hooks
+  │   ├── useTheme.ts   # Theme and color utilities
+  │   └── useSpeech.ts  # Text-to-speech utilities
+  └── locales/          # Internationalization
+      ├── en.json       # English translations
+      ├── fr.json       # French translations
+      ├── pt.json       # Portuguese translations
+      └── i18n.ts       # i18n configuration
 ```
 
 ## 🚦 Getting Started

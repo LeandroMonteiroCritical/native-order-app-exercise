@@ -1,29 +1,34 @@
 import { View, Text, ScrollView } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
+import { useTranslation } from "react-i18next";
 import { mockOrders } from "../../../data/mock";
 import {
-  Badge,
-  Button,
   SafeContainer,
   AnimatedHeader,
   SpeechButton,
+  Button,
 } from "../../../components";
 import { speechTexts } from "../../../constants/speechTexts";
 import Animated, { FadeIn } from "react-native-reanimated";
 
 export default function OrderDetailsScreen() {
+  const { t } = useTranslation();
   const { id } = useLocalSearchParams();
   const router = useRouter();
   const order = mockOrders.find((o) => o.id === id);
+
+  const currencySymbol = "$";
+  const colonSymbol = ":";
+
   if (!order) {
     return (
       <SafeContainer>
         <View className="flex-1 items-center justify-center p-4">
           <Text className="text-xl font-medium text-text-primary mb-4">
-            Order not found
+            {t("orders.orderNotFound")}
           </Text>
           <Button variant="outline" onPress={() => router.back()}>
-            Go Back
+            <Text>{t("common.back")}</Text>
           </Button>
         </View>
       </SafeContainer>
@@ -51,11 +56,11 @@ export default function OrderDetailsScreen() {
     <SafeContainer>
       <AnimatedHeader
         mode="order-details"
-        title={`Order #${order.id}`}
-        subtitle={order.date}
+        title={t("orders.orderNumber", { id: order.id })}
+        subtitle={t("orders.placedOn", { date: order.date })}
         badge={{
           variant: getStatusVariant(order.status),
-          label: order.status,
+          label: t(`orders.status.${order.status.toLowerCase()}`),
         }}
         showBackButton={true}
         onBackPress={() => router.push("/dashboard")}
@@ -63,7 +68,7 @@ export default function OrderDetailsScreen() {
       <ScrollView className="flex-1 p-4">
         <View className="flex-row justify-between items-center mb-4">
           <Text className="text-lg font-semibold text-text-primary">
-            Products
+            {t("orders.products")}
           </Text>
           <SpeechButton
             text={speechTexts.orderDetails(order, total)}
@@ -88,7 +93,8 @@ export default function OrderDetailsScreen() {
                   {product.name}
                 </Text>
                 <Text className="text-text-secondary text-sm">
-                  Quantity: {product.quantity}
+                  {t("common.quantity")}
+                  {colonSymbol} {product.quantity}
                 </Text>
               </View>
               <View className="flex-row items-center gap-2">
@@ -101,16 +107,20 @@ export default function OrderDetailsScreen() {
                   variant="icon"
                 />
                 <Text className="text-text-primary">
-                  ${(product.price * product.quantity).toFixed(2)}
+                  {currencySymbol}
+                  {(product.price * product.quantity).toFixed(2)}
                 </Text>
               </View>
             </View>
           ))}
           <View className="mt-4 pt-4 border-t border-border-light">
             <View className="flex-row justify-between">
-              <Text className="font-semibold text-text-primary">Total</Text>
               <Text className="font-semibold text-text-primary">
-                ${total.toFixed(2)}
+                {t("common.total")}
+              </Text>
+              <Text className="font-semibold text-text-primary">
+                {currencySymbol}
+                {total.toFixed(2)}
               </Text>
             </View>
           </View>

@@ -1,0 +1,47 @@
+{
+  "common": {
+    "continue": "Continuer",
+    "back": "Retour",
+    "search": "Rechercher...",
+    "total": "Total",
+    "quantity": "Quantité",
+    "loading": "Chargement...",
+    "error": "Erreur"
+  },
+  "auth": {
+    "welcome": "Bon retour",
+    "subtitle": "Veuillez entrer votre numéro de téléphone pour continuer",
+    "phoneLabel": "Numéro de téléphone",
+    "phonePlaceholder": "+1234567890"
+  },
+  "dashboard": {
+    "welcomeBack": "Bon retour",
+    "member": "membre",
+    "orders": "Commandes",
+    "noOrders": "Aucune commande trouvée",
+    "orderCount": "{{count}} commande",
+    "orderCount_plural": "{{count}} commandes"
+  },
+  "orders": {
+    "orderDetails": "Détails de la commande",
+    "products": "Produits",
+    "orderNumber": "Commande #{{id}}",
+    "placedOn": "Passée le {{date}}",
+    "orderNotFound": "Commande non trouvée",
+    "status": {
+      "pending": "En attente",
+      "delivered": "Livrée",
+      "cancelled": "Annulée"
+    }
+  },
+  "navigation": {
+    "dashboard": "Tableau de bord",
+    "orders": "Commandes",
+    "profile": "Profil"
+  },
+  "languages": {
+    "english": "English",
+    "french": "Français",
+    "portuguese": "Português"
+  }
+}

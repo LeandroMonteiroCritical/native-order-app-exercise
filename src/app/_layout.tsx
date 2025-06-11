@@ -1,4 +1,5 @@
 import "../global.css";
+import "../locales/i18n"; // Initialize i18n
 import { Slot, useRouter, useSegments } from "expo-router";
 import { AuthProvider, useAuth } from "../contexts/auth";
 import { SpeechProvider } from "../contexts/speech";
@@ -20,7 +21,7 @@ function RouteGuard() {
     } else if (isAuthenticated && inAuthGroup) {
       router.replace("/dashboard");
     }
-  }, [isAuthenticated, segments, isLoading]);
+  }, [isAuthenticated, segments, isLoading, router]);
   if (isLoading) {
     return (
       <View
